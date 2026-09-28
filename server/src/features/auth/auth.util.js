@@ -12,3 +12,7 @@ export const generateRefreshToken = ({userId, role}) => {
 
     return refreshToken;
 }
+
+export const readRefreshToken = (refreshToken) => {
+    return jwt.verify(refreshToken, config.REFRESH_TOKEN_SECRET)
+}
