@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { loginController, refreshController, registerController } from "./auth.controller.js";
+import { getMeController, loginController, logoutController, refreshController, registerController } from "./auth.controller.js";
 import { loginValidator, registerValidator } from "./auth.validator.js";
+import { authenticate } from "./auth.middleware.js";
 
 const router = Router();
 
@@ -34,5 +35,17 @@ router.post("/login", loginValidator, loginController)
  */
 
 router.post("/refresh", refreshController)
+
+/**
+ * @GET /api/auth/me
+ */
+
+router.get("/me",authenticate, getMeController)
+
+/**
+ * @POST /api/auth/logut
+ */
+
+router.post("/logout", logoutController)
 
 export default router;
