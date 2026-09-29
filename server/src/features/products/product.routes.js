@@ -4,8 +4,8 @@ import {
   authenticateSeller,
 } from "../../shared/middlewares/auth.middleware.js";
 import upload from "../../shared/config/multer.config.js";
-import { createProductController, getSingleProduct, listAllProduct } from "./product.controller.js";
-import { productValidator } from "./product.validator.js";
+import { createProductController, deleteProduct, getSingleProduct, listAllProduct, updateProduct } from "./product.controller.js";
+import { productValidator, updateProductValidator } from "./product.validator.js";
 
 const router = Router();
 
@@ -47,5 +47,23 @@ router.get("/",listAllProduct)
  */
 
 router.get("/:id",getSingleProduct)
+
+/**
+ * @method PUT
+ * @route /api/products/:id
+ * @access seller
+ * @description : update product by Id
+ */
+
+router.put("/:id", authenticate, authenticateSeller, upload.array("images",5), updateProductValidator, updateProduct)
+
+/**
+ * @method DELETE
+ * @route /api/products/:id
+ * @access seller
+ * @description : delete product by Id
+ */
+
+router.delete("/:id",authenticate,authenticateSeller,deleteProduct)
 
 export default router;
