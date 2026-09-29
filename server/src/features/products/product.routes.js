@@ -4,7 +4,7 @@ import {
   authenticateSeller,
 } from "../../shared/middlewares/auth.middleware.js";
 import upload from "../../shared/config/multer.config.js";
-import { createProductController } from "./product.controller.js";
+import { createProductController, getSingleProduct, listAllProduct } from "./product.controller.js";
 import { productValidator } from "./product.validator.js";
 
 const router = Router();
@@ -30,5 +30,22 @@ router.post(
   ,
   createProductController,
 );
+
+/**
+ * @method GET
+ * @route /api/products/
+ * @access ALL
+ */
+
+router.get("/",listAllProduct)
+
+/**
+ * @method GET
+ * @route /api/products/:id
+ * @access ALL
+ * @description : get single product by id
+ */
+
+router.get("/:id",getSingleProduct)
 
 export default router;

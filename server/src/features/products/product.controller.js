@@ -22,11 +22,35 @@ export const createProductController = async (req, res) => {
         seller : userId
     })
 
-    res.status(200).json({
+    res.status(201).json({
         message : "Product added successfully",
         data : {
             product
         }
     })
 
+}
+
+export const listAllProduct = async (req, res) => {
+    const products = await productModel.find();
+
+    res.status(200).json({
+        message : "All products fetched successfully",
+        data : {
+            products
+        }
+    })
+}
+
+export const getSingleProduct = async (req, res) => {
+    const {id} = req.params;
+    
+    const product = await productModel.findById(id);
+
+    res.status(200).json({
+        message : "Product data fetched successfully",
+        data : {
+            product
+        }
+    })
 }
