@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { getMeController, loginController, logoutController, refreshController, registerController } from "./auth.controller.js";
 import { loginValidator, registerValidator } from "./auth.validator.js";
-import { authenticate } from "./auth.middleware.js";
+import { authenticate } from "../../shared/middlewares/auth.middleware.js";
 
 const router = Router();
 
@@ -43,7 +43,7 @@ router.post("/refresh", refreshController)
 router.get("/me",authenticate, getMeController)
 
 /**
- * @POST /api/auth/logut
+ * @POST /api/auth/logout
  */
 
 router.post("/logout", logoutController)
