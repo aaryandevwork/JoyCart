@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import config from '../../shared/config/config.js'
 
 export const generateAccessToken = ({userId, role}) => {
-    const accessToken = jwt.sign({userId, role},config.ACCESS_TOKEN_SECRET, {expiresIn : "15m"});
+    const accessToken = jwt.sign({userId, role},config.ACCESS_TOKEN_SECRET, {expiresIn : "30s"});
 
     return accessToken;
 }

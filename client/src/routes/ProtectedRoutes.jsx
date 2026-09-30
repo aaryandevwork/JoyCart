@@ -5,9 +5,9 @@ const ProtectedRoutes = () => {
 
     const {isAuthenticated , isInitialized} = useSelector((store) => store.auth);
 
-    if (!isInitialized) {
-        return <div>Checking authentication...</div>;
-    }
+    // if (!isInitialized) {
+    //     return <div>Checking authentication...</div>;
+    // }
 
     if(!isAuthenticated){
         return <Navigate to={"/"} />;
