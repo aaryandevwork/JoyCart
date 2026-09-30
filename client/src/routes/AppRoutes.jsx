@@ -6,8 +6,17 @@ import AuthLayout from "../layout/AuthLayout";
 import ProtectedRoutes from "./ProtectedRoutes";
 import MainLayout from "../layout/MainLayout";
 import HomePage from "../pages/HomePage";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { refreshAccessToken } from "../store/authActions";
 
 const AppRoutes = () => {
+
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(refreshAccessToken());
+    },[])
 
     const router = createBrowserRouter([
         {
