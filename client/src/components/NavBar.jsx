@@ -1,15 +1,19 @@
 import React from 'react';
 import { ShoppingBag, Plus, LogOut, User } from 'lucide-react';
 import { axiosInstance } from '../config/axiosInstance';
+import { useDispatch } from 'react-redux';
+import { logout } from '../store/authSlice';
 
 export const Navbar = ({ user, onOpenAddModal, onLogout }) => {
 
-  const handleGetMe = async () => {
+  const dispatch = useDispatch();
+
+  const handleLogout = async () => {
     try {
-      const res = await axiosInstance.get("/auth/me");
-      console.log(res);
+      await axiosInstance.post("/auth/logout");
+      dispatch(logout());
     } catch (error) {
-      console.log("error in get me",error.response); 
+      console.log("error in handleLogout ",error);
     }
   }
 
@@ -27,14 +31,6 @@ export const Navbar = ({ user, onOpenAddModal, onLogout }) => {
             <span className="text-[10px] text-slate-400 font-semibold uppercase tracking-wider">Admin Dashboard</span>
           </div>
         </div>
-
-          <button
-            onClick={handleGetMe}
-            className="flex items-center space-x-2 bg-indigo-600 hover:bg-indigo-700 text-white px-3.5 py-2 rounded-lg text-sm font-medium transition shadow-sm active:scale-95"
-          >
-            <Plus className="w-4 h-4" />
-            <span className="hidden sm:inline">Get Me</span>
-          </button>
 
         {/* Action Controls */}
         <div className="flex items-center space-x-3 sm:space-x-4">
@@ -54,7 +50,7 @@ export const Navbar = ({ user, onOpenAddModal, onLogout }) => {
           )}
 
           <button
-            onClick={onLogout}
+            onClick={handleLogout}
             className="flex items-center space-x-2 bg-slate-800 hover:bg-red-950/80 hover:text-red-400 text-slate-300 px-3.5 py-2 rounded-lg text-sm font-medium border border-slate-700 transition"
             title="Sign Out"
           >
