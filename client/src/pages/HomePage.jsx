@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Navbar } from "../components/Navbar";
 import { ProductCard } from "../components/ProductCard";
 import { ProductModal } from "../components/ProductModel";
 import { DeleteModal } from "../components/DeleteModel";
-import { INITIAL_PRODUCTS } from "../mockData";
 import { Package, AlertCircle, Shirt } from "lucide-react";
-import { useProductHook } from "../hooks/useProductHook";
+import { useProducts } from "../hooks/useProducts";
 
 const HomePage = ({ user, onLogout }) => {
-  const { getAllProducts, addProduct, updateProduct, deleteProducts } =
-    useProductHook();
+  const { productsQuery, addMutation, updateMutation, deleteMutation } = useProducts();
 
-  const [products, setProducts] = useState(INITIAL_PRODUCTS);
+  const { data: products = [], isLoading, isError, error } = productsQuery;
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [productToEdit, setProductToEdit] = useState(null);
 
@@ -51,39 +50,45 @@ const HomePage = ({ user, onLogout }) => {
   const handleSaveProduct = async (productData) => {
     try {
       if (productToEdit) {
-        await updateProduct(productToEdit._id, productData);
+        await updateMutation.mutateAsync({
+          productId: productToEdit._id,
+          productData,
+        });
       } else {
-        await addProduct(productData);
+        await addMutation.mutateAsync(productData);
       }
 
-      await fetchProducts();
-
       setIsModalOpen(false);
+      setProductToEdit(null);
     } catch (error) {
       console.error("Error saving product:", error);
     }
   };
 
   const handleConfirmDelete = async () => {
+    if (!productToDelete) return;
+
     try {
-      if (productToDelete) {
-        await deleteProducts(productToDelete._id);
-        await fetchProducts();
-      }
+      await deleteMutation.mutateAsync(productToDelete._id);
+
+      setIsDeleteModalOpen(false);
+      setProductToDelete(null);
     } catch (error) {
-      console.error("Error handleConfirmDelete:", error);
+      console.error("Error deleting product:", error);
     }
-    setIsDeleteModalOpen(false);
   };
 
-  const fetchProducts = async () => {
-    const products = await getAllProducts();
-    setProducts(products);
-  };
+  if (isLoading) {
+    return <div>Loading products...</div>;
+  }
 
-  useEffect(() => {
-    fetchProducts();
-  }, []);
+  if (isError) {
+    return (
+      <div className="p-6 text-center text-red-600">
+        Failed to load products: {error?.message}
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
