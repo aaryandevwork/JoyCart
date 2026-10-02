@@ -1,42 +1,45 @@
 export const INITIAL_PRODUCTS = [
   {
-    id: '1',
-    title: 'Oversized Cotton Hoodie',
-    category: 'Outerwear',
-    sizes: ['S', 'M', 'L', 'XL'],
-    color: 'Navy Blue',
-    price: 69.99,
-    stock: 24,
-    image: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&q=80&w=600'
+    _id: "6abb838d00ed3dde7dbb72ae",
+    title: "myCaraa",
+    description: "haogaa-descriptiondemo-descriptiondemo-descriptiondemo-descriptiondemo-descriptiondemo-descriptiondemo-description",
+    price: {
+      amount: 300,
+      currency: "INR"
+    },
+    published: false,
+    seller: "6aba48303dcb3d07243d1726",
+    images: [
+      "https://ik.imagekit.io/sltmpjq1z/joyCart/sunder-muthukumaran-k8ztytucupi-unsplash_YaBWRhjRXp.jpg",
+      "https://ik.imagekit.io/sltmpjq1z/joyCart/hahaha_you_dont_know_my_password_so_LEAVE_UzQA-8CEyd.jfif"
+    ],
+    sizes: [
+      {
+        _id: "6abb838d00ed3dde7dbb72af",
+        size: "M",
+        stock: 20
+      }
+    ],
+    __v: 0
   },
   {
-    id: '2',
-    title: 'Vintage Denim Jacket',
-    category: 'Jackets',
-    sizes: ['M', 'L'],
-    color: 'Washed Blue',
-    price: 89.99,
-    stock: 8,
-    image: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?auto=format&fit=crop&q=80&w=600'
-  },
-  {
-    id: '3',
-    title: 'Slim Fit Crew Tee',
-    category: 'T-Shirts',
-    sizes: ['XS', 'S', 'M', 'L', 'XL'],
-    color: 'Heather Gray',
-    price: 29.99,
-    stock: 0,
-    image: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&q=80&w=600'
-  },
-  {
-    id: '4',
-    title: 'Relaxed Chino Pants',
-    category: 'Pants',
-    sizes: ['30', '32', '34'],
-    color: 'Sand Beige',
-    price: 54.99,
-    stock: 15,
-    image: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&q=80&w=600'
+    _id: "6abb838d00ed3dde7dbb72bf",
+    title: "Oversized Cotton Hoodie",
+    description: "Premium heavy cotton hoodie with brushed interior and relaxed unisex fit.",
+    price: {
+      amount: 1499,
+      currency: "INR"
+    },
+    published: true,
+    seller: "6aba48303dcb3d07243d1726",
+    images: [
+      "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&q=80&w=600"
+    ],
+    sizes: [
+      { size: "S", stock: 10 },
+      { size: "M", stock: 15 },
+      { size: "L", stock: 0 }
+    ],
+    __v: 0
   }
 ];

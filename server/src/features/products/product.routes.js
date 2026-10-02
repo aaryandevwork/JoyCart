@@ -10,6 +10,7 @@ import { productIdValidator, productValidator, updateProductValidator } from "./
 const router = Router();
 
 /**
+ * @Functinality ADD product
  * @method POST
  * @route /api/products/
  * @access seller
@@ -32,7 +33,8 @@ router.post(
 );
 
 /**
- * @method GET
+ * @Functinality Get all products
+ * @method GET 
  * @route /api/products/
  * @access ALL
  */
@@ -40,6 +42,7 @@ router.post(
 router.get("/",listAllProduct)
 
 /**
+ * @Functinality Get single product
  * @method GET
  * @route /api/products/:id
  * @access ALL
@@ -49,15 +52,21 @@ router.get("/",listAllProduct)
 router.get("/:id", productIdValidator,getSingleProduct)
 
 /**
+ * @Functinality Get update product
  * @method PUT
  * @route /api/products/:id
  * @access seller
  * @description : update product by Id
  */
 
-router.put("/:id", authenticate, authenticateSeller, upload.array("images",5), updateProductValidator, updateProduct)
+router.put("/:id", authenticate, authenticateSeller, upload.array("images",5), (req, res, next) => {
+    req.body?.price && (req.body.price = JSON.parse(req.body.price));
+    req.body?.sizes && (req.body.sizes = JSON.parse(req.body.sizes));
+    next();
+  }, updateProductValidator, updateProduct)
 
 /**
+ * @Functinality Get delete product
  * @method DELETE
  * @route /api/products/:id
  * @access seller

@@ -4,7 +4,11 @@ import { axiosInstance } from '../config/axiosInstance';
 import { useDispatch } from 'react-redux';
 import { logout } from '../store/authSlice';
 
-export const Navbar = ({ user, onOpenAddModal, onLogout }) => {
+export const Navbar = ({ onOpenAddModal, onLogout }) => {
+
+  const user = {
+    name : "aaryan"
+  }
 
   const dispatch = useDispatch();
 
