@@ -9,6 +9,7 @@ import HomePage from "../pages/HomePage";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { refreshAccessToken } from "../store/authActions";
+import SingleProductPage from "../pages/singleProductPage";
 
 const AppRoutes = () => {
 
@@ -50,6 +51,10 @@ const AppRoutes = () => {
                         {
                             path : "",
                             element : <HomePage />
+                        },
+                        {
+                            path : "products/:productId",   
+                            element : <SingleProductPage />
                         }
                     ]
                 }

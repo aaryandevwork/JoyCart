@@ -6,6 +6,12 @@ export const getAllProducts = async () => {
   return res.data.data.products;
 };
 
+export const getProductById = async (productId) => {
+  const res = await axiosInstance.get(`/products/${productId}`);
+
+  return res.data.data.product;
+}
+
 export const addProduct = async (product) => {
   const res = await axiosInstance.post("/products/", product);
 

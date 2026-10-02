@@ -61,9 +61,7 @@ export const updateProduct = async (req, res) => {
   const { id } = req.params;
   const { title, description, price, sizes } = matchedData(req);
   const { userId } = req.user;
-
-  console.log(req.body);
-
+;
   const product = await productModel.findById(id);
 
   if (!product) {

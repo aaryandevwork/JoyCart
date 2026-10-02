@@ -3,14 +3,18 @@ import { Navigate, Outlet } from "react-router";
 
 const ProtectedRoutes = () => {
 
-    const {isAuthenticated , isInitialized} = useSelector((store) => store.auth);
+    const {isAuthenticated , isInitialized, isLoading} = useSelector((store) => store.auth);
 
     // if (!isInitialized) {
     //     return <div>Checking authentication...</div>;
     // }
 
+    if(isLoading){
+        return <h1 className="text-4xl">User Loading ...</h1>
+    }
+
     if(!isAuthenticated){
-        return <Navigate to={"/"} />;
+        return <Navigate to={"/"} replace />;
     }
 
     return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { AlertTriangle } from 'lucide-react';
 
-export const DeleteModal = ({ isOpen, product, onClose, onConfirm }) => {
+export const DeleteModal = ({ isOpen, product, onClose, onConfirm,isDeleting }) => {
   if (!isOpen || !product) return null;
 
   return (
@@ -23,10 +23,11 @@ export const DeleteModal = ({ isOpen, product, onClose, onConfirm }) => {
             Cancel
           </button>
           <button
+            disabled={isDeleting}
             onClick={onConfirm}
             className="flex-1 py-2.5 rounded-lg bg-rose-600 hover:bg-rose-700 text-white text-sm font-semibold transition shadow-sm"
           >
-            Delete
+            {isDeleting ? "Deleting..." : "Delete"}
           </button>
         </div>
       </div>

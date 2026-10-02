@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { X, Plus, Trash2 } from "lucide-react";
 
-export const ProductModal = ({ isOpen, productToEdit, onClose, onSave }) => {
+export const ProductModal = ({ isOpen, productToEdit, onClose, onSave, isSaving }) => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -289,6 +289,7 @@ export const ProductModal = ({ isOpen, productToEdit, onClose, onSave }) => {
             </button>
             <button
               type="submit"
+              disabled={isSaving}
               className="px-5 py-2 rounded-lg text-sm font-semibold bg-indigo-600 hover:bg-indigo-700 text-white transition shadow-sm"
             >
               {productToEdit ? "Update Product" : "Save Product"}

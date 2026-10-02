@@ -1,13 +1,15 @@
 import React, { useState } from "react";
-import { Navbar } from "../components/Navbar";
+import { Navbar } from "../components/NavBar";
 import { ProductCard } from "../components/ProductCard";
 import { ProductModal } from "../components/ProductModel";
 import { DeleteModal } from "../components/DeleteModel";
 import { Package, AlertCircle, Shirt } from "lucide-react";
 import { useProducts } from "../hooks/useProducts";
+import { useSelector } from "react-redux";
 
-const HomePage = ({ user, onLogout }) => {
-  const { productsQuery, addMutation, updateMutation, deleteMutation } = useProducts();
+const HomePage = () => {
+  const { productsQuery, addMutation, updateMutation, deleteMutation } =
+    useProducts();
 
   const { data: products = [], isLoading, isError, error } = productsQuery;
 
@@ -92,7 +94,7 @@ const HomePage = ({ user, onLogout }) => {
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
-      <Navbar user={user} onOpenAddModal={handleOpenAdd} onLogout={onLogout} />
+      <Navbar onOpenAddModal={handleOpenAdd} />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Metric Cards */}
@@ -179,6 +181,9 @@ const HomePage = ({ user, onLogout }) => {
             ))}
           </div>
         )}
+        {addMutation.isError && (
+          <p className="text-red-500">Failed to add product.</p>
+        )}
       </main>
 
       {/* Modals */}
@@ -187,6 +192,7 @@ const HomePage = ({ user, onLogout }) => {
         productToEdit={productToEdit}
         onClose={() => setIsModalOpen(false)}
         onSave={handleSaveProduct}
+        isSaving={addMutation.isPending || updateMutation.isPending}
       />
 
       <DeleteModal
@@ -194,6 +200,7 @@ const HomePage = ({ user, onLogout }) => {
         product={productToDelete}
         onClose={() => setIsDeleteModalOpen(false)}
         onConfirm={handleConfirmDelete}
+        isDeleting={deleteMutation.isPending}
       />
     </div>
   );

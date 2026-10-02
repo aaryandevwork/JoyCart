@@ -1,7 +1,11 @@
 import React from 'react';
 import { Edit2, Trash2, Layers, CheckCircle2, XCircle } from 'lucide-react';
+import { useNavigate } from 'react-router';
 
 export const ProductCard = ({ product, onEdit, onDelete }) => {
+
+  const navigate = useNavigate();
+
   // Calculate total stock across all size variants
   const totalStock = product.sizes?.reduce((acc, curr) => acc + (Number(curr.stock) || 0), 0) || 0;
   const firstImage = product.images?.[0] || 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&q=80&w=600';
@@ -22,6 +26,7 @@ export const ProductCard = ({ product, onEdit, onDelete }) => {
       {/* Image Container */}
       <div className="relative aspect-[4/3] bg-slate-100 overflow-hidden">
         <img
+          onClick={() => navigate(`/main/products/${product._id}`)}
           src={firstImage}
           alt={product.title}
           className="w-full h-full object-cover group-hover:scale-105 transition duration-300"

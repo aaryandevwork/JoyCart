@@ -9,8 +9,6 @@ export const authenticate = (req, res, next) => {
         })
     }
 
-    console.log(req.body);
-
     try {
         const decoded = readAccessToken(accessToken);
         // const {userId , role} = decoded;
