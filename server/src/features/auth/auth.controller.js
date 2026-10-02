@@ -89,15 +89,17 @@ export const loginController = async (req, res) => {
 
   res.cookie("refreshToken", refreshToken, {
     httpOnly: true,
+    secure: true,
+    sameSite: "none",
   });
 
   res.status(200).json({
     message: "User login successfully",
     data: {
       user: {
-        email : user.email,
-        name : user.name,
-        id : user._id
+        email: user.email,
+        name: user.name,
+        id: user._id,
       },
       accessToken,
     },
@@ -120,87 +122,86 @@ export const refreshController = async (req, res) => {
 
     const user = await userModel.findById(userId);
 
-    if(user.refreshToken != refreshToken){
-        await userModel.findByIdAndUpdate(user._id, {
-            refreshToken : null,
-        });
+    if (user.refreshToken != refreshToken) {
+      await userModel.findByIdAndUpdate(user._id, {
+        refreshToken: null,
+      });
 
-        return res.status(401).json({
-            message : "Refresh token mismatch"
-        })
+      return res.status(401).json({
+        message: "Refresh token mismatch",
+      });
     }
 
-    const accessToken = generateAccessToken({userId , role});
+    const accessToken = generateAccessToken({ userId, role });
 
-    const newRefreshToken = generateRefreshToken({userId , role});
+    const newRefreshToken = generateRefreshToken({ userId, role });
 
     await userModel.findByIdAndUpdate(user._id, {
-        refreshToken : newRefreshToken
+      refreshToken: newRefreshToken,
     });
 
     res.cookie("refreshToken", newRefreshToken, {
-        httpOnly : true
-    })
+      httpOnly: true,
+      secure: true,
+      sameSite: "none",
+    });
 
     res.status(200).json({
       message: "token rotated successfully",
-      data : {
-        user : {
-            name : user.name,
-            email :user.email,
-            id : user._id
+      data: {
+        user: {
+          name: user.name,
+          email: user.email,
+          id: user._id,
         },
-        accessToken
-      }
+        accessToken,
+      },
     });
-
   } catch (error) {
     return res.status(401).json({
-        message : "Invalid refresh Token"
-    })
+      message: "Invalid refresh Token",
+    });
   }
 };
 
 export const getMeController = async (req, res) => {
-    const {userId , role} = req.user;
+  const { userId, role } = req.user;
 
-    const user = await userModel.findById(userId);
+  const user = await userModel.findById(userId);
 
-    res.status(200).json({
-        message : "User Data fetched successfully",
-        data : {
-            email : user.email,
-            name : user.name,
-            id : user._id,
-            role : user.role
-        }
-    })
-}
+  res.status(200).json({
+    message: "User Data fetched successfully",
+    data: {
+      email: user.email,
+      name: user.name,
+      id: user._id,
+      role: user.role,
+    },
+  });
+};
 
 export const logoutController = async (req, res) => {
-    const refreshToken = req.cookies.refreshToken;
+  const refreshToken = req.cookies.refreshToken;
 
-    const {userId , role} = readRefreshToken(refreshToken);
+  const { userId, role } = readRefreshToken(refreshToken);
 
-    if(refreshToken){
-        await userModel.findByIdAndUpdate(userId, {
-            $unset : {
-                refreshToken : 1
-            }
-        });
-
-        // await userModel.findByIdAndUpdate(userId, {
-        //     refreshToken : null
-        // });
-
-
-    }
-
-    res.clearCookie("refreshToken", {
-        httpOnly : true,
+  if (refreshToken) {
+    await userModel.findByIdAndUpdate(userId, {
+      $unset: {
+        refreshToken: 1,
+      },
     });
 
-    return res.status(200).json({
-        message: "Logged out successfully"
-    });
-}
+    // await userModel.findByIdAndUpdate(userId, {
+    //     refreshToken : null
+    // });
+  }
+
+  res.clearCookie("refreshToken", {
+    httpOnly: true,
+  });
+
+  return res.status(200).json({
+    message: "Logged out successfully",
+  });
+};
