@@ -5,13 +5,6 @@ import { authenticate } from "../../shared/middlewares/auth.middleware.js";
 
 const router = Router();
 
-router.get("/", (req, res) => {
-    res.status(200).json({
-        message : "fine bsdvroh"
-    })
-});
-
-
 /**
  * @POST /api/auth/register
  * @param req Express req
