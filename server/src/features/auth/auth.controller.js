@@ -183,22 +183,20 @@ export const getMeController = async (req, res) => {
 export const logoutController = async (req, res) => {
   const refreshToken = req.cookies.refreshToken;
 
-  const { userId, role } = readRefreshToken(refreshToken);
-
   if (refreshToken) {
+    const { userId } = readRefreshToken(refreshToken);
+
     await userModel.findByIdAndUpdate(userId, {
       $unset: {
         refreshToken: 1,
       },
     });
-
-    // await userModel.findByIdAndUpdate(userId, {
-    //     refreshToken : null
-    // });
   }
 
   res.clearCookie("refreshToken", {
     httpOnly: true,
+    secure: true,
+    sameSite: "none",
   });
 
   return res.status(200).json({
