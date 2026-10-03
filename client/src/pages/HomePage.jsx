@@ -5,7 +5,7 @@ import { ProductModal } from "../components/ProductModel";
 import { DeleteModal } from "../components/DeleteModel";
 import { Package, AlertCircle, Shirt } from "lucide-react";
 import { useProducts } from "../hooks/useProducts";
-import { useSelector } from "react-redux";
+import FullScreenLoader from "../components/fullScreenLoader";
 
 const HomePage = () => {
   const { productsQuery, addMutation, updateMutation, deleteMutation } =
@@ -81,7 +81,7 @@ const HomePage = () => {
   };
 
   if (isLoading) {
-    return <div>Loading products...</div>;
+    return <FullScreenLoader text="Loading.." />;
   }
 
   if (isError) {

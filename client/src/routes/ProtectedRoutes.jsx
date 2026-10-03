@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router";
+import FullScreenLoader from "../components/fullScreenLoader";
 
 const ProtectedRoutes = () => {
 
@@ -10,7 +11,7 @@ const ProtectedRoutes = () => {
     // }
 
     if(isLoading){
-        return <h1 className="text-4xl">User Loading ...</h1>
+        return <FullScreenLoader text="Loading.." />
     }
 
     if(!isAuthenticated){
