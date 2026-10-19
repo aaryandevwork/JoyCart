@@ -101,16 +101,16 @@ export const ProductModal = ({ isOpen, productToEdit, onClose, onSave, isSaving 
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-      <div className="bg-white rounded-2xl max-w-lg w-full shadow-2xl overflow-hidden my-8">
+    <div className="fixed inset-0 z-50 bg-(--theme-text)/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+      <div className="bg-(--theme-surface) rounded-2xl max-w-lg w-full shadow-2xl overflow-hidden my-8">
         {/* Modal Header */}
-        <div className="px-6 py-4 bg-slate-900 text-white flex items-center justify-between">
+        <div className="px-6 py-4 bg-(--theme-primary) text-(--theme-accent-text) flex items-center justify-between">
           <h3 className="font-bold text-lg">
             {productToEdit ? "Edit Product" : "Add New Product"}
           </h3>
           <button
             onClick={onClose}
-            className="p-1 hover:bg-slate-800 rounded-lg text-slate-400 hover:text-white transition"
+            className="p-1 hover:bg-(--theme-primary-hover) rounded-lg text-(--theme-accent-text) transition"
           >
             <X className="w-5 h-5" />
           </button>
@@ -119,7 +119,7 @@ export const ProductModal = ({ isOpen, productToEdit, onClose, onSave, isSaving 
         {/* Modal Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           <div>
-            <label className="block text-xs font-semibold text-slate-700 uppercase mb-1">
+            <label className="block text-xs font-semibold text-(--theme-text) uppercase mb-1">
               Title
             </label>
             <input
@@ -130,12 +130,12 @@ export const ProductModal = ({ isOpen, productToEdit, onClose, onSave, isSaving 
               onChange={(e) =>
                 setFormData({ ...formData, title: e.target.value })
               }
-              className="w-full px-3.5 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-sm"
+              className="w-full px-3.5 py-2 rounded-lg border border-(--theme-border) bg-(--theme-surface) text-(--theme-text) placeholder:text-(--theme-text-muted) focus:ring-2 focus:ring-(--theme-primary) focus:border-(--theme-primary) outline-none text-sm"
             />
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-700 uppercase mb-1">
+            <label className="block text-xs font-semibold text-(--theme-text) uppercase mb-1">
               Description
             </label>
             <textarea
@@ -145,14 +145,14 @@ export const ProductModal = ({ isOpen, productToEdit, onClose, onSave, isSaving 
               onChange={(e) =>
                 setFormData({ ...formData, description: e.target.value })
               }
-              className="w-full px-3.5 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-sm resize-none"
+              className="w-full px-3.5 py-2 rounded-lg border border-(--theme-border) bg-(--theme-surface) text-(--theme-text) placeholder:text-(--theme-text-muted) focus:ring-2 focus:ring-(--theme-primary) focus:border-(--theme-primary) outline-none text-sm resize-none"
             />
           </div>
 
           {/* Price Object */}
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-700 uppercase mb-1">
+              <label className="block text-xs font-semibold text-(--theme-text) uppercase mb-1">
                 Price Amount
               </label>
               <input
@@ -164,11 +164,11 @@ export const ProductModal = ({ isOpen, productToEdit, onClose, onSave, isSaving 
                 onChange={(e) =>
                   setFormData({ ...formData, amount: e.target.value })
                 }
-                className="w-full px-3.5 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-sm"
+                className="w-full px-3.5 py-2 rounded-lg border border-(--theme-border) bg-(--theme-surface) text-(--theme-text) placeholder:text-(--theme-text-muted) focus:ring-2 focus:ring-(--theme-primary) focus:border-(--theme-primary) outline-none text-sm"
               />
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-700 uppercase mb-1">
+              <label className="block text-xs font-semibold text-(--theme-text) uppercase mb-1">
                 Currency
               </label>
               <select
@@ -176,7 +176,7 @@ export const ProductModal = ({ isOpen, productToEdit, onClose, onSave, isSaving 
                 onChange={(e) =>
                   setFormData({ ...formData, currency: e.target.value })
                 }
-                className="w-full px-3.5 py-2 rounded-lg border border-slate-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none text-sm bg-white"
+                className="w-full px-3.5 py-2 rounded-lg border border-(--theme-border) bg-(--theme-surface) text-(--theme-text) focus:ring-2 focus:ring-(--theme-primary) focus:border-(--theme-primary) outline-none text-sm"
               >
                 <option value="INR">INR (₹)</option>
                 <option value="USD">USD ($)</option>
@@ -186,7 +186,7 @@ export const ProductModal = ({ isOpen, productToEdit, onClose, onSave, isSaving 
 
           {/* Images List */}
           <div>
-            <label className="block text-xs font-semibold text-slate-700 uppercase mb-1">
+            <label className="block text-xs font-semibold text-(--theme-text) uppercase mb-1">
               Product Images
             </label>
 
@@ -200,22 +200,20 @@ export const ProductModal = ({ isOpen, productToEdit, onClose, onSave, isSaving 
                   images: Array.from(e.target.files || []),
                 })
               }
-              className="w-full px-3.5 py-2 rounded-lg border border-slate-300 
-               focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 
-               outline-none text-sm"
+              className="w-full px-3.5 py-2 rounded-lg border border-(--theme-border) bg-(--theme-surface) text-(--theme-text) focus:ring-2 focus:ring-(--theme-primary) focus:border-(--theme-primary) outline-none text-sm"
             />
           </div>
 
           {/* Sizes & Stock Embedded Array */}
           <div>
             <div className="flex items-center justify-between mb-2">
-              <label className="block text-xs font-semibold text-slate-700 uppercase">
+              <label className="block text-xs font-semibold text-(--theme-text) uppercase">
                 Sizes & Stock
               </label>
               <button
                 type="button"
                 onClick={addSizeRow}
-                className="text-xs font-semibold text-indigo-600 hover:text-indigo-800 flex items-center gap-1"
+                className="text-xs font-semibold text-(--theme-primary) hover:text-(--theme-primary-hover) flex items-center gap-1"
               >
                 <Plus className="w-3.5 h-3.5" /> Add Size
               </button>
@@ -232,7 +230,7 @@ export const ProductModal = ({ isOpen, productToEdit, onClose, onSave, isSaving 
                     onChange={(e) =>
                       handleSizeChange(index, "size", e.target.value)
                     }
-                    className="w-1/2 px-3 py-1.5 rounded-lg border border-slate-300 text-sm"
+                    className="w-1/2 px-3 py-1.5 rounded-lg border border-(--theme-border) bg-(--theme-surface) text-(--theme-text) placeholder:text-(--theme-text-muted) text-sm"
                   />
                   <input
                     type="number"
@@ -243,13 +241,13 @@ export const ProductModal = ({ isOpen, productToEdit, onClose, onSave, isSaving 
                     onChange={(e) =>
                       handleSizeChange(index, "stock", e.target.value)
                     }
-                    className="w-1/2 px-3 py-1.5 rounded-lg border border-slate-300 text-sm"
+                    className="w-1/2 px-3 py-1.5 rounded-lg border border-(--theme-border) bg-(--theme-surface) text-(--theme-text) placeholder:text-(--theme-text-muted) text-sm"
                   />
                   {formData.sizes.length > 1 && (
                     <button
                       type="button"
                       onClick={() => removeSizeRow(index)}
-                      className="p-1.5 text-slate-400 hover:text-rose-600 rounded-md"
+                      className="p-1.5 text-(--theme-text-muted) hover:text-(--theme-danger) rounded-md"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
@@ -268,29 +266,29 @@ export const ProductModal = ({ isOpen, productToEdit, onClose, onSave, isSaving 
               onChange={(e) =>
                 setFormData({ ...formData, published: e.target.checked })
               }
-              className="w-4 h-4 text-indigo-600 rounded border-slate-300 focus:ring-indigo-500"
+              className="w-4 h-4 accent-(--theme-primary) rounded border-(--theme-border) focus:ring-(--theme-primary)"
             />
             <label
               htmlFor="published"
-              className="text-sm font-semibold text-slate-700 cursor-pointer"
+              className="text-sm font-semibold text-(--theme-text) cursor-pointer"
             >
               Publish Product (Visible in Store)
             </label>
           </div>
 
           {/* Footer Buttons */}
-          <div className="pt-4 flex items-center justify-end space-x-3 border-t border-slate-100">
+          <div className="pt-4 flex items-center justify-end space-x-3 border-t border-(--theme-border)">
             <button
               type="button"
               onClick={onClose}
-              className="px-4 py-2 rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 transition"
+              className="px-4 py-2 rounded-lg text-sm font-semibold text-(--theme-text-muted) hover:bg-(--theme-surface-muted) transition"
             >
               Cancel
             </button>
             <button
               type="submit"
               disabled={isSaving}
-              className="px-5 py-2 rounded-lg text-sm font-semibold bg-indigo-600 hover:bg-indigo-700 text-white transition shadow-sm"
+              className="px-5 py-2 rounded-lg text-sm font-semibold bg-(--theme-primary) hover:bg-(--theme-primary-hover) text-(--theme-accent-text) transition shadow-sm"
             >
               {productToEdit ? "Update Product" : "Save Product"}
             </button>
@@ -300,3 +298,4 @@ export const ProductModal = ({ isOpen, productToEdit, onClose, onSave, isSaving 
     </div>
   );
 };
+

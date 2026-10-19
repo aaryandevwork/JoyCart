@@ -13,9 +13,14 @@ export const getProductById = async (productId) => {
 }
 
 export const addProduct = async (product) => {
-  const res = await axiosInstance.post("/products/", product);
-
-  return res.data;
+  try {
+    const res = await axiosInstance.post("/products/", product);
+  
+    return res.data;
+    
+  } catch (error) {
+    console.log(error.response);
+  }
 };
 
 export const updateProduct = async ({ productId, productData }) => {

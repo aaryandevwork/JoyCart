@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { Navbar } from "../components/NavBar";
 import { ProductCard } from "../components/ProductCard";
@@ -86,56 +87,56 @@ const HomePage = () => {
 
   if (isError) {
     return (
-      <div className="p-6 text-center text-red-600">
+      <div className="p-6 text-center text-(--theme-danger)">
         Failed to load products: {error?.message}
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-(--theme-bg) flex flex-col">
       <Navbar onOpenAddModal={handleOpenAdd} />
 
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Metric Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-          <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center space-x-4">
-            <div className="p-3 bg-indigo-50 text-indigo-600 rounded-xl">
+          <div className="bg-(--theme-surface) p-5 rounded-2xl border border-(--theme-border) shadow-sm flex items-center space-x-4">
+            <div className="p-3 bg-(--theme-surface-muted) text-(--theme-primary) rounded-xl">
               <Shirt className="w-6 h-6" />
             </div>
             <div>
-              <p className="text-xs font-semibold text-slate-500 uppercase">
+              <p className="text-xs font-semibold text-(--theme-text-muted) uppercase">
                 Total Items
               </p>
-              <h4 className="text-2xl font-bold text-slate-900">
+              <h4 className="text-2xl font-bold text-(--theme-text)">
                 {totalProducts}
               </h4>
             </div>
           </div>
 
-          <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center space-x-4">
-            <div className="p-3 bg-amber-50 text-amber-600 rounded-xl">
+          <div className="bg-(--theme-surface) p-5 rounded-2xl border border-(--theme-border) shadow-sm flex items-center space-x-4">
+            <div className="p-3 bg-(--theme-accent) text-(--theme-accent-text) rounded-xl">
               <Package className="w-6 h-6" />
             </div>
             <div>
-              <p className="text-xs font-semibold text-slate-500 uppercase">
+              <p className="text-xs font-semibold text-(--theme-text-muted) uppercase">
                 Low Stock
               </p>
-              <h4 className="text-2xl font-bold text-slate-900">
+              <h4 className="text-2xl font-bold text-(--theme-text)">
                 {lowStockCount}
               </h4>
             </div>
           </div>
 
-          <div className="bg-white p-5 rounded-2xl border border-slate-200 shadow-sm flex items-center space-x-4">
-            <div className="p-3 bg-rose-50 text-rose-600 rounded-xl">
+          <div className="bg-(--theme-surface) p-5 rounded-2xl border border-(--theme-border) shadow-sm flex items-center space-x-4">
+            <div className="p-3 bg-(--theme-surface-muted) text-(--theme-danger) rounded-xl">
               <AlertCircle className="w-6 h-6" />
             </div>
             <div>
-              <p className="text-xs font-semibold text-slate-500 uppercase">
+              <p className="text-xs font-semibold text-(--theme-text-muted) uppercase">
                 Out of Stock
               </p>
-              <h4 className="text-2xl font-bold text-slate-900">
+              <h4 className="text-2xl font-bold text-(--theme-text)">
                 {outOfStockCount}
               </h4>
             </div>
@@ -144,27 +145,27 @@ const HomePage = () => {
 
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
-          <h1 className="text-xl font-bold text-slate-900">
+          <h1 className="text-xl font-bold text-(--theme-text)">
             Clothing Inventory Grid
           </h1>
-          <span className="text-xs text-slate-500 font-medium">
+          <span className="text-xs text-(--theme-text-muted) font-medium">
             Showing {products.length} products
           </span>
         </div>
 
         {/* Product Cards Grid */}
         {products.length === 0 ? (
-          <div className="bg-white rounded-2xl border border-dashed border-slate-300 p-12 text-center">
-            <Shirt className="w-12 h-12 text-slate-300 mx-auto mb-3" />
-            <h3 className="text-base font-bold text-slate-800">
+          <div className="bg-(--theme-surface) rounded-2xl border border-dashed border-(--theme-border) p-12 text-center">
+            <Shirt className="w-12 h-12 text-(--theme-border) mx-auto mb-3" />
+            <h3 className="text-base font-bold text-(--theme-text)">
               No Clothing Products Found
             </h3>
-            <p className="text-sm text-slate-500 mt-1">
+            <p className="text-sm text-(--theme-text-muted) mt-1">
               Get started by adding your first store item.
             </p>
             <button
               onClick={handleOpenAdd}
-              className="mt-4 inline-flex items-center space-x-2 bg-indigo-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-indigo-700 transition"
+              className="mt-4 inline-flex items-center space-x-2 bg-(--theme-primary) text-(--theme-accent-text) px-4 py-2 rounded-lg text-sm font-semibold hover:bg-(--theme-primary-hover) transition"
             >
               Add Product
             </button>
@@ -182,7 +183,7 @@ const HomePage = () => {
           </div>
         )}
         {addMutation.isError && (
-          <p className="text-red-500">Failed to add product.</p>
+          <p className="text-(--theme-danger)">Failed to add product.</p>
         )}
       </main>
 

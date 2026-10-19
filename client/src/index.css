@@ -1,1 +1,157 @@
-@import "tailwindcss"
+
+@import "tailwindcss";
+
+/* JoyCart — Purple, Navy & Slate Theme */
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* Original component palette */
+  --palette-purple: #4F39F6;
+  --palette-purple-hover: #4330D9;
+  --palette-navy: #0F172A;
+  --palette-background: #F8FAFC;
+  --palette-surface: #FFFFFF;
+  --palette-border: #E2E8F0;
+  --palette-text-muted: #334155;
+  --palette-success: #16A34A;
+
+  /* Semantic theme variables */
+  --theme-bg: #F8FAFC;
+  --theme-surface: #FFFFFF;
+  --theme-surface-muted: #F1F5F9;
+  --theme-text: #0F172A;
+  --theme-text-muted: #334155;
+  --theme-border: #E2E8F0;
+  --theme-primary: #4F39F6;
+  --theme-primary-hover: #4330D9;
+  --theme-accent: #4F39F6;
+  --theme-accent-text: #FFFFFF;
+  --theme-success: #16A34A;
+  --theme-warning: #D97706;
+  --theme-danger: #DC2626;
+
+  /* Compatibility variables */
+  --theme-white: var(--theme-surface);
+
+  --theme-slate-50: #F8FAFC;
+  --theme-slate-100: #F1F5F9;
+  --theme-slate-200: #E2E8F0;
+  --theme-slate-300: #CBD5E1;
+  --theme-slate-400: #94A3B8;
+  --theme-slate-500: #64748B;
+  --theme-slate-600: #475569;
+  --theme-slate-700: #334155;
+  --theme-slate-800: #1E293B;
+  --theme-slate-900: #0F172A;
+
+  --theme-indigo-50: #EEF2FF;
+  --theme-indigo-100: #E0E7FF;
+  --theme-indigo-200: #C7D2FE;
+  --theme-indigo-300: #A5B4FC;
+  --theme-indigo-400: #818CF8;
+  --theme-indigo-500: #6366F1;
+  --theme-indigo-600: #4F39F6;
+  --theme-indigo-700: #4330D9;
+  --theme-indigo-800: #3730A3;
+
+  --theme-red-400: #F87171;
+  --theme-red-500: #EF4444;
+  --theme-red-600: #DC2626;
+  --theme-red-700: #B91C1C;
+  --theme-red-950: #450A0A;
+
+  --theme-rose-50: #FFF1F2;
+  --theme-rose-100: #FFE4E6;
+  --theme-rose-200: #FECDD3;
+  --theme-rose-600: #E11D48;
+  --theme-rose-700: #BE123C;
+
+  --theme-amber-50: #FFFBEB;
+  --theme-amber-100: #FEF3C7;
+  --theme-amber-600: #D97706;
+  --theme-amber-800: #92400E;
+
+  --theme-emerald-100: #D1FAE5;
+  --theme-emerald-200: #A7F3D0;
+  --theme-emerald-600: #059669;
+  --theme-emerald-800: #065F46;
+  --theme-emerald-900: #064E3B;
+}
+
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Dark theme palette */
+  --palette-purple: #8B80FF;
+  --palette-purple-hover: #A69EFF;
+  --palette-navy: #0F172A;
+  --palette-background: #0B1120;
+  --palette-surface: #111C2E;
+  --palette-border: #334155;
+  --palette-text-muted: #CBD5E1;
+  --palette-success: #4ADE80;
+
+  /* Semantic theme variables */
+  --theme-bg: #0B1120;
+  --theme-surface: #111C2E;
+  --theme-surface-muted: #1E293B;
+  --theme-text: #F8FAFC;
+  --theme-text-muted: #CBD5E1;
+  --theme-border: #334155;
+  --theme-primary: #8B80FF;
+  --theme-primary-hover: #A69EFF;
+  --theme-accent: #384959;
+  --theme-accent-text: #FFFFFF;
+  --theme-success: #4ADE80;
+  --theme-warning: #FBBF24;
+  --theme-danger: #F87171;
+
+  /* Compatibility variables */
+  --theme-white: var(--theme-surface);
+
+  --theme-slate-50: #0B1120;
+  --theme-slate-100: #111C2E;
+  --theme-slate-200: #1E293B;
+  --theme-slate-300: #334155;
+  --theme-slate-400: #64748B;
+  --theme-slate-500: #94A3B8;
+  --theme-slate-600: #CBD5E1;
+  --theme-slate-700: #E2E8F0;
+  --theme-slate-800: #F1F5F9;
+  --theme-slate-900: #F8FAFC;
+
+  --theme-indigo-50: #252044;
+  --theme-indigo-100: #302A5C;
+  --theme-indigo-200: #423A7D;
+  --theme-indigo-300: #5D52B8;
+  --theme-indigo-400: #776BEB;
+  --theme-indigo-500: #8B80FF;
+  --theme-indigo-600: #A69EFF;
+  --theme-indigo-700: #C4BEFF;
+  --theme-indigo-800: #E0DDFF;
+
+  --theme-red-400: #F87171;
+  --theme-red-500: #F87171;
+  --theme-red-600: #EF4444;
+  --theme-red-700: #FCA5A5;
+  --theme-red-950: #450A0A;
+
+  --theme-rose-50: #351724;
+  --theme-rose-100: #512232;
+  --theme-rose-200: #713346;
+  --theme-rose-600: #FDA4AF;
+  --theme-rose-700: #FECDD3;
+
+  --theme-amber-50: #352B16;
+  --theme-amber-100: #4B3918;
+  --theme-amber-600: #FBBF24;
+  --theme-amber-800: #FDE68A;
+
+  --theme-emerald-100: #143A30;
+  --theme-emerald-200: #185344;
+  --theme-emerald-600: #4ADE80;
+  --theme-emerald-800: #A7F3D0;
+  --theme-emerald-900: #D1FAE5;
+}

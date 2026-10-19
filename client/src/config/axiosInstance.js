@@ -40,8 +40,6 @@ export const setupInterceptors = (store) => {
             const response = await axiosInstance.post("/auth/refresh");
             const newAccessToken = response?.data.data.accessToken;
 
-            console.log(newAccessToken);
-
             store.dispatch(setAccessToken(newAccessToken));
 
             originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
