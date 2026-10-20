@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { useNavigate, useParams } from 'react-router';
 import { useProduct } from '../hooks/useProduct';
+import FullScreenLoader from '../components/fullScreenLoader';
 
 export const SingleProductPage = () => {
 
@@ -43,7 +44,7 @@ export const SingleProductPage = () => {
   }, [product]);
 
   if (isLoading) {
-    return <div>Loading product...</div>;
+    return <FullScreenLoader text="Loading.." />;
   }
 
   if (isError) {
